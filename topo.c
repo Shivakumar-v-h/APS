@@ -29,17 +29,19 @@ void topological(int arr[][10],int n)
                 in_degree[i]=in_degree[i]+1;
         }
     }
-    for(i=0;i<n;i++)
-    {
-        printf("%d ",in_degree[i]);
-    }
+
     printf(("\n\n"));
-    for(k=0;k<4;k++)
+    for(k=0;k<6;k++)
     {
+      /*  for(i=0;i<n;i++)
+        {
+        printf("%d ",in_degree[i]);
+        }*/
     for(i=0;i<n;i++)
     {
         if(in_degree[i]==0)
         {
+          //  flag==1;
             push(i);
             visited[i]=1;
         }
@@ -47,18 +49,19 @@ void topological(int arr[][10],int n)
     if(top!=-1)
     {
         temp=pop();
-        printf("temp=%d\n",temp);
+     //   printf("temp=%d\n",temp);
         t[x++]=temp;
+        in_degree[temp]=-1;
         for(j=0;j<n;j++)
         {
             if(arr[temp][j]==1 && visited[j]==0)
             {
                 in_degree[j]=in_degree[j]-1;
-                if(in_degree[j]==0)
+            /*    if(in_degree[j]==0)
                 {
                     push(j);
                     visited[j]=1;
-                }
+                }*/
             }
         }
     }
@@ -70,10 +73,10 @@ void topological(int arr[][10],int n)
 }
 int main()
 {
-    int m[10][10] ={{0, 0, 1, 1, 0,0},
-                    {0, 0, 0, 1, 1,0},
-                    {0, 0, 0, 1, 0,1},
-                    {0, 0, 0, 0, 0,1},
+    int m[10][10] ={{0, 1, 0, 1, 0,0},
+                    {0, 0, 1, 1, 0,0},
+                    {0, 0, 0, 1, 1,1},
+                    {0, 0, 0, 0, 1,1},
                     {0, 0, 0, 0, 0,1},
                     {0, 0, 0, 0, 0,0}};
     int n=6;
